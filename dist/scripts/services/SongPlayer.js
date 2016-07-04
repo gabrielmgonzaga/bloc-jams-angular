@@ -1,8 +1,11 @@
 (function() {
-    function SongPlayer() {
+    function SongPlayer(Fixtures) {
         var SongPlayer = {};
         
-        var currentSong = null;
+        /**
+        @desc Stores album information to move between songs
+        */
+        var currentAlbum = Fixtures.getAlbum();
         /**
         * @desc Buzz object audio file
         * @type {object}
@@ -17,7 +20,7 @@
         var setSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
-                currentSong.playing = null;
+                SongPlayer.currentSong.playing = null;
             }
             
             currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -25,7 +28,7 @@
                preload: true
             });
             
-            currentSong = song;
+            SongPlayer.currentSong = song;
         };
         
         /**
@@ -39,24 +42,93 @@
                 song.playing = true;
         };
         
+         /**
+        * @function stopSong
+        * @desc Stop a song
+        * @param {Object} song
+        */ 
+        var stopSong = function(song) {
+                currentBuzzObject.stop();
+                song.playing = null;
+        };
+        
+        /**
+        @function getSongIndex
+        @desc gets the index of the song
+        */
+        var getSongIndex = function(song) {
+            return currentAlbum.songs.indexOf(song);
+        };
+        
+        // Public 
+        
+        /**
+        * @desc Active song object from list of songs
+        * @type {Object}
+        */
+        SongPlayer.currentSong = null;
+        /**
+        * @function play
+        * @desc Play current or new song
+        * @param {Object} song
+        */
         SongPlayer.play = function(song) {
-            if (currentSong !== song) {
+            song = song || SongPlayer.currentSong;
+            if (SongPlayer.currentSong !== song) {
                 setSong(song);
-                currentBuzzObject.play();
-                song.playing = true;
+                playSong(song);
             // Conditional which checks if current song is equal to song
-            } else if (currentSong === song){
+            } else if (SongPlayer.currentSong === song) {
                 // Conditional assumption; if user can trigger play button, then song must be paused
                 if (currentBuzzObject.isPaused()) {
-                    currentBuzzObject.play();
+                    playSong(song);
                 }
             }
         };
         
         // Function that pauses
         SongPlayer.pause = function(song) {
+            song = song || SongPlayer.currentSong;
             currentBuzzObject.pause();
             song.playing = false;
+        };
+        
+        /**
+        * @function SongPlayer.previous
+        * @desc switches to the previous song
+        * @param 
+        */
+        SongPlayer.previous = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            // Decrease current song index by 1
+            currentSongIndex--;
+            
+            if (currentSongIndex < 0) {
+                stopSong(SongPlayer.currentSong);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+        
+        /**
+        * @function next song
+        * @desc Set song to next song
+        */
+        SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong)
+            currentSongIndex++;
+            
+            var lastSongIndex = currentAlbum.songs.length - 1;
+            
+            if (currentSongIndex > lastSongIndex) {
+                stopSong(SongPlayer.currentSong);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);            
+            }
         };
         
         return SongPlayer;
