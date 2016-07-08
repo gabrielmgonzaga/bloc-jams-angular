@@ -110,7 +110,7 @@ The function we pass in the HTML has an argument, value, which isn't defined in 
                 };
             }
         };
-    }
+    };
     
     angular 
         .module('blocJams')

@@ -2,6 +2,8 @@
     function SongPlayer($rootScope, Fixtures) {
         var SongPlayer = {};
         
+        // Private Attributes
+        
         /**
         @desc Stores album information to move between songs
         */
@@ -11,6 +13,8 @@
         * @type {object}
         */
         var currentBuzzObject = null;
+        
+        // Private Functions
         
         /**
         * @function setSong
@@ -67,7 +71,7 @@
             return currentAlbum.songs.indexOf(song);
         };
         
-        // Public 
+        // Public Attributes
         
         /**
         * @desc Active song object from list of songs
@@ -80,6 +84,10 @@
             * @type {Number}
             */
         SongPlayer.currentTime = null;
+        
+        SongPlayer.volume = 80;
+        
+        // Public Methods
         
         /**
         * @function play
