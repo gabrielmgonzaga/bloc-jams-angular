@@ -13,6 +13,7 @@
                 controller: 'LandingCtrl as landing', 
                 templateUrl: '/templates/landing.html'
             })
+        
             .state('album', {
                 url: '/album',
                 controller: 'AlbumCtrl as album',
