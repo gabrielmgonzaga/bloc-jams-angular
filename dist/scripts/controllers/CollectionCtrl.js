@@ -1,7 +1,7 @@
 (function() {
     function CollectionCtrl(Fixtures) {
         // append images with loop
-        this.albums = Fixtures.getCollection(12);
+        this.albums = Fixtures.getCollection(1);
     };
     
     angular
