@@ -2,7 +2,7 @@
     angular
         .module('blocJams', ['ui.router'])
         .config(config);
-        
+
     function config($stateProvider, $locationProvider) {
         $locationProvider
             .html5Mode({
@@ -23,6 +23,7 @@
                 controller: 'AlbumCtrl as album',
                 templateUrl: '/templates/album.html'
             })
+            
             .state('collection', {
                 url: '/collection',
                 controller: 'CollectionCtrl as collection',
