@@ -1,19 +1,19 @@
 (function() {
+    angular
+        .module('blocJams')
+        .factory('Fixtures', Fixtures);
+
     function Fixtures() {
+
         var Fixtures = {};
 
         var albumPicasso = {
-            name: 'The Colors',
-            artist: 'Pablo Picasso',
-            label: 'Cubism',
-            year: '1881',
+            name: 'Mixes',
+            year: '2017',
             albumArtUrl: '/assets/images/album_covers/01.png',
-            songs: [
-                { name: 'Blue', length: '161.71', audioUrl: 'assets/music/blue'},
-                { name: 'Green', length: '103.96', audioUrl: 'assets/music/green'},
-                { name: 'Red', length: '268.45', audioUrl: 'assets/music/red'},
-                { name: 'Pink', length: '153.14', audioUrl: 'assets/music/pink'},
-                { name: 'Magenta', length: '374.22', audioUrl: 'assets/music/magenta'}
+            songs:
+            [
+                { name: '80s Soul n Funk', length: '3603', audioUrl: 'assets/music/80sfunk'}
             ]
         };
 
@@ -33,7 +33,4 @@
 
         };
 
-    angular
-        .module('blocJams')
-        .factory('Fixtures', Fixtures);
 })();
