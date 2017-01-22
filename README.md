@@ -1,13 +1,20 @@
-## BlocJams
+# Mikothekid
+A simple music player application that plays mixes.
 
-A simple music player application built with Angular JS and the Buzz Music Library.
+#### View live: http://mikothekid.herokuapp.com
 
-## Live Demo
-
-http://blocjams-spaace.herokuapp.com/
+## Technologies
+- HTML5
+- CSS3 
+- Ionic Framework
+- Angular 1.5
+- Buzz Music Library
+- Grunt
+- Node JS
+- Hapi
 
 ## Get Started
 
 ```
-git clone https://github.com/gabrielmgonzaga/blocjams-angular.git
+https://github.com/gabrielmgonzaga/mikothekid.git
 ```
