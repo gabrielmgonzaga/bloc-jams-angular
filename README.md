@@ -1,8 +1,6 @@
 # Mikothekid
 A simple music player application that plays mixes.
 
-#### View live: http://mikothekid.herokuapp.com
-
 ## Technologies
 - HTML5
 - CSS3 
